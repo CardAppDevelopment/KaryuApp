@@ -12,7 +12,7 @@ import com.example.practice.bean.Data
 import com.example.practice.databinding.FragmentHistoryGraphBinding
 import com.example.practice.utils.CirqueStatisticalView
 
-
+//fragment
 class HistoryGraphFragment : BaseFragment<FragmentHistoryGraphBinding>(FragmentHistoryGraphBinding::inflate) {
 
     private lateinit var historyViewModel: HistoryViewModel
