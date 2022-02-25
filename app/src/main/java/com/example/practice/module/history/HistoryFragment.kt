@@ -2,12 +2,15 @@ package com.example.practice.module.history
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +20,7 @@ import com.example.practice.bean.Data
 import com.example.practice.bean.HistoryBean
 import com.example.practice.databinding.FragmentHistoryBinding
 import com.example.practice.utils.LoadingDialogUtils
-import java.util.*
-import kotlin.collections.ArrayList
-
+import java.util.ArrayList
 
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBinding::inflate) {
 
@@ -51,7 +52,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         endTv.text = endDate
         graphView.setImageResource(R.mipmap.pie_chart)
         historyViewModel.historyListLiveData.observe(viewLifecycleOwner, Observer {
-            var init: (View, Data) -> Unit = { v:View, d:Data ->
+            var init: (View, Data) -> Unit = {v:View,d:Data ->
                 var addressView = v.findViewById<TextView>(R.id.address)
                 var dateview=v.findViewById<TextView>(R.id.time)
                 var priceView=v.findViewById<TextView>(R.id.price)
@@ -61,8 +62,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
             }
             //get from networkApi
             var adapter = it.getOrNull()?.let { it1 ->
-                HistoryListViewAdapter(
-                    R.layout.history_list_item,
+                HistoryListViewAdapter(R.layout.history_list_item,
                     it1.dataList,init)
             }
 
@@ -79,8 +79,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         })
         //グラフ画面へ遷移
         graphView.setOnClickListener{
-            val bundle = Bundle()
-            val arrayList = ArrayList<Data>()
             var data = Data("ルミネ新宿","30000円","2021/01/02")
             var data1 = Data("ルミネ新宿","30000円","2021/01/02")
             var data2 = Data("アトレ吉祥寺","30000円","2021/01/02")
@@ -89,11 +87,8 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
             var data5 = Data("○○〇","30000円","2021/01/02")
             var data6 = Data("○○〇","30000円","2021/01/02")
             var data7 = Data("ルミネ新宿","30000円","2021/01/02")
-
             var history= HistoryBean(listOf(data,data1,data2,data3,data4,data5,data6,data7))
-
             val action=HistoryFragmentDirections.actionNavigationHistoryToNavigationHistoryGraph(history)
-
             findNavController().navigate(action)
         }
         //startDateを選択
