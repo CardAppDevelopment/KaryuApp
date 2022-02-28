@@ -49,6 +49,7 @@
             android:id="@+id/action_navigation_pay_to_navigation_amount"
             app:destination="@id/navigation_amount" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_amount"
         android:name="com.example.practice.module.pay.AmountFragment"
@@ -56,7 +57,16 @@
         <argument
             android:name="qrData"
             app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_amount_to_navigation_paydone"
+            app:destination="@id/navigation_paydone" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_paydone"
+        android:name="com.example.practice.module.pay.PayDoneFragment"
+        android:label="@string/title_pay"
+        tools:layout="@layout/fragment_paydone" />
 
     <fragment
         android:id="@+id/navigation_settings"

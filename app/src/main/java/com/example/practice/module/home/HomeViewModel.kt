@@ -22,9 +22,7 @@ class HomeViewModel : ViewModel() {
     fun getLeftMoneyData(){
         loadingLiveData.postValue(true)
         viewModelScope.launch {
-
             val resultFromNetwork = NetworkApi.requestLeftMoney()
-            leftMoneyLiveData.value=resultFromNetwork
             loadingLiveData.postValue(false)
         }
     }

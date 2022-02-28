@@ -3,6 +3,7 @@ package com.example.practice.network
 
 
 import com.example.practice.bean.*
+import com.example.practice.module.MyData
 import com.example.practice.network.base.BaseResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,7 +19,7 @@ interface INetworkService {
     suspend fun requestHistoryInfo(@Query("start") startDate: String,@Query("end") endDate: String): BaseResponse<HistoryBean>
 
     @GET("dev/left_money")
-    suspend fun requestLeftMoney(): BaseResponse<LeftMoneyBean>
+    suspend fun requestLeftMoney(@Query("id") id: String): BaseResponse<LeftMoneyBean>
 
     @GET("dev/notification_data")
     suspend fun requestNotificationInfo(): BaseResponse<NotificationBean>

@@ -2,29 +2,19 @@ package com.example.practice.module.pay
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.practice.R
 import com.example.practice.base.BaseFragment
-import com.example.practice.databinding.FragmentHomeBinding
-import com.example.practice.databinding.FragmentNotificationsBinding
 import com.example.practice.databinding.FragmentPayBinding
 import com.example.practice.module.ScanQRActivity
-import com.example.practice.module.home.HomeViewModel
-import com.example.practice.module.notifications.NotificationsViewModel
-import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.os.bundleOf
-import com.google.zxing.client.android.Intents
 
 
 class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate) {
@@ -46,10 +36,6 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
 
         _binding = FragmentPayBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        // 同じActivityのFragmentから別のFragmentへ遷移
-        binding.btnTest.setOnClickListener{
-            findNavController().navigate(R.id.navigation_amount)
-        }
         return root
     }
 
@@ -58,7 +44,22 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
 
         /*val intent = Intent(this.activity, ScanQRActivity().javaClass)
         startActivityForResult(intent,1201)*/
-        _qrlauncher.launch(Intent(this.activity,ScanQRActivity().javaClass))
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        //_qrlauncher.launch(Intent(this.activity,ScanQRActivity().javaClass))
+
+        val data="{\n" +
+                "  \"id\":2345678901,\n" +
+                "  \"name\":\"View商店\",\n" +
+                "  \"date\":\"2022/01/01\",\n" +
+                "  \"time\":\"12:00\",\n" +
+                "  \"hash\":\"8018155fe6dca2ef3e713e6ecbc4e6b5649facd6fe12306f8f9d1c38dae0ea79\"\n" +
+                "}"
+        val action=PayFragmentDirections.actionNavigationPayToNavigationAmount(data)
+        findNavController().navigate(action)
     }
 
 

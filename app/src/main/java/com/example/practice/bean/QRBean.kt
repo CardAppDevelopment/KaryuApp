@@ -7,6 +7,15 @@ import java.sql.Time
 import java.util.*
 
 data class QRData (
+    val id:String,
+    val name:String,
+    val date:String,
+    val time:String,
+    val hash:String
+)
+
+
+/*data class QRData (
     val id:Int,
     val name:String,
     val date:Date,
@@ -32,5 +41,5 @@ data class QRData (
             return Gson().fromJson(source,QRData::class.java)
         }
     }
-}
+}*/
 
