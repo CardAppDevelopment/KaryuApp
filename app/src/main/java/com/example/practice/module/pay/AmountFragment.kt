@@ -1,19 +1,24 @@
 package com.example.practice.module.pay
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.example.practice.base.BaseFragment
 import com.example.practice.bean.QRData
 import com.example.practice.databinding.FragmentAmountBinding
 import org.json.JSONObject
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.practice.R
 import com.example.practice.bean.PayRequestBean
+import com.example.practice.bean.PayResponseBean
 import com.example.practice.module.MyData
+import com.example.practice.utils.LoadingDialogUtils
+import org.w3c.dom.Text
 
 class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding::inflate) {
 
@@ -23,10 +28,14 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
 
     private var _binding: FragmentAmountBinding? = null
     private val binding get() = _binding!!
+    private var mLoadingDialog: Dialog? = null
+    lateinit var loadingDialog:LoadingDialogUtils
 
     private fun initData() {
         payViewModel =
             ViewModelProvider(this)[PayViewModel::class.java]
+
+        loadingDialog = LoadingDialogUtils()
     }
 
     override fun onCreateView(
@@ -39,19 +48,22 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
 
         initData()
 
-        val data=qrData_json_disassembly(args.qrData)
+        val qrdata=qrData_json_disassembly(args.qrData)
+
+        binding.txtName.text=qrdata.name
 
 
         binding.btnPay.setOnClickListener{
+            val a=payViewModel.paymentInfo
             try{
-                PayViewModel().getPayResponse(
+                payViewModel.getPayInfo(
                     PayRequestBean(
-                        data.date,
+                        qrdata.date,
                         "",
                         MyData().getID(),
-                        data.id,
+                        qrdata.id,
                         (binding.editPrice.text).toString().toInt(),
-                        data.time
+                        qrdata.time
                     )
                 )
             }
@@ -61,9 +73,15 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
 
         }
 
-        payViewModel.payLiveData.observe(viewLifecycleOwner, Observer {
-            var action=AmountFragmentDirections.actionNavigationAmountToNavigationPaydone()
-            findNavController().navigate(action)
+        payViewModel.loadingLiveData.observe(this,  {
+            if(it){
+                //mLoadingDialog = loadingDialog.createLoadingDialog(this,"Loading")
+            } else {
+                val result =payViewModel.paymentInfo
+                val redata=result?.getOrNull()
+                var action = AmountFragmentDirections.actionNavigationAmountToNavigationPaydone(redata!!,qrdata)
+                findNavController().navigate(action)
+            }
         })
 
         return root
@@ -71,8 +89,6 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     private fun qrData_json_disassembly(data:String): QRData {

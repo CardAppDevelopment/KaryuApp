@@ -1,10 +1,15 @@
 package com.example.practice.bean
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class PayResponseBean(
     val payInfo: PaymentInfo
-): Serializable
+): Parcelable
+
+@Parcelize
 data class PaymentInfo(
     val date: String,
     val hash: String,
@@ -14,5 +19,4 @@ data class PaymentInfo(
     val msg: String,
     val success: Boolean,
     val time: String
-): Serializable
-
+): Parcelable

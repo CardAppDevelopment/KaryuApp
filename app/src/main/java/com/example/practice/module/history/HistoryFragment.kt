@@ -2,7 +2,6 @@ package com.example.practice.module.history
 
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
@@ -70,7 +69,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         })
         historyViewModel.loadingLiveData.observe(viewLifecycleOwner,{
             if(it){
-                mLoadingDialog = loadingDialog.createLoadingDialog(getActivity(),"Loading")
+                //mLoadingDialog = loadingDialog.createLoadingDialog(requireActivity(),"Loading")
             } else {
                 loadingDialog.closeDialog(mLoadingDialog)
             }

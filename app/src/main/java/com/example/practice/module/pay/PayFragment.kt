@@ -49,9 +49,9 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        //_qrlauncher.launch(Intent(this.activity,ScanQRActivity().javaClass))
+        _qrlauncher.launch(Intent(this.activity,ScanQRActivity().javaClass))
 
-        val data="{\n" +
+        /*val data="{\n" +
                 "  \"id\":2345678901,\n" +
                 "  \"name\":\"View商店\",\n" +
                 "  \"date\":\"2022/01/01\",\n" +
@@ -59,7 +59,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
                 "  \"hash\":\"8018155fe6dca2ef3e713e6ecbc4e6b5649facd6fe12306f8f9d1c38dae0ea79\"\n" +
                 "}"
         val action=PayFragmentDirections.actionNavigationPayToNavigationAmount(data)
-        findNavController().navigate(action)
+        findNavController().navigate(action)*/
     }
 
 

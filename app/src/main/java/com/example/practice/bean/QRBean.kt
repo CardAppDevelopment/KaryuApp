@@ -1,18 +1,21 @@
 package com.example.practice.bean
 
 import android.content.Context
+import android.os.Parcelable
 import com.google.gson.Gson
+import kotlinx.parcelize.Parcelize
 import java.io.File
 import java.sql.Time
 import java.util.*
 
+@Parcelize
 data class QRData (
     val id:String,
     val name:String,
     val date:String,
     val time:String,
     val hash:String
-)
+): Parcelable
 
 
 /*data class QRData (

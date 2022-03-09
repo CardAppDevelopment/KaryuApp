@@ -21,6 +21,7 @@ class PayViewModel : ViewModel() {
 
     val payLiveData = MutableLiveData<Result<PayResponseBean>>()
     val loadingLiveData = MutableLiveData<Boolean>()
+    var paymentInfo = payLiveData.value
 
     fun getPayResponse(request: PayRequestBean) {
         loadingLiveData.postValue(true)
@@ -28,6 +29,15 @@ class PayViewModel : ViewModel() {
             // read data from networkapi
             val resultFromNetwork = NetworkApi.requestPaymentInfo(request)
             payLiveData.value=resultFromNetwork
+            loadingLiveData.postValue(false)
+        }
+    }
+
+    fun getPayInfo(request: PayRequestBean) {
+        val paymentData = NetworkApiTest("https://2e9b84ba-4658-4bed-9499-cd89f96964a4.mock.pstmn.io")
+        loadingLiveData.postValue(true)
+        viewModelScope.launch {
+            paymentInfo = paymentData.requestPaymentInfo(request)
             loadingLiveData.postValue(false)
         }
     }
