@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.practice.R
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.widget.Button
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
@@ -13,14 +14,12 @@ class ScanQRActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //(R.layout.activity_scan_qr)
 
         //スキャンボタンのクリックイベントを設定
             val qrScan = IntentIntegrator(this)
-            qrScan.setOrientationLocked(false)
+            qrScan.setOrientationLocked(true)
             qrScan.setPrompt("QRコードを認識してください。")
             qrScan.initiateScan()
-
     }
 
     override fun onActivityResult(
