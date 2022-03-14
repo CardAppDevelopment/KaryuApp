@@ -39,6 +39,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.labelVisibilityMode= BottomNavigationView.LABEL_VISIBILITY_LABELED
         navView.setupWithNavController(navController)
+
+        navView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_home -> {
+                    findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_home)
+                }
+                R.id.navigation_history -> {
+                    findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_history)
+                }
+                R.id.navigation_pay -> {
+                    findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_pay)
+                }
+                R.id.navigation_notifications -> {
+                    findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_notifications)
+                }
+                R.id.navigation_settings -> {
+                    findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_settings)
+                }
+            }
+
+            return@setOnNavigationItemSelectedListener false
+        }
     }
 
     public fun getInstance():MainActivity{

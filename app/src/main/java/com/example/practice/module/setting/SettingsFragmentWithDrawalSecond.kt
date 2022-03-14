@@ -48,7 +48,6 @@ class SettingsFragmentWithDrawalSecond : BaseFragment<FragmentSettingsWithdrawal
         settingViewModel =
             ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-
     }
 
 }

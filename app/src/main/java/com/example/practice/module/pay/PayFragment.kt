@@ -59,7 +59,14 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
                 "  \"hash\":\"8018155fe6dca2ef3e713e6ecbc4e6b5649facd6fe12306f8f9d1c38dae0ea79\"\n" +
                 "}"
         val action=PayFragmentDirections.actionNavigationPayToNavigationAmount(data)
-        findNavController().navigate(action)
+
+        try{
+            findNavController().navigate(action)
+        }
+        catch(e:Exception){
+            findNavController().navigate(R.id.navigation_amount)
+        }
+
     }
 
 

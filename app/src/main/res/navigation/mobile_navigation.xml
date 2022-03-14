@@ -63,7 +63,9 @@
             app:argType="string" />
         <action
             android:id="@+id/action_navigation_amount_to_navigation_paydone"
-            app:destination="@id/navigation_paydone" />
+            app:destination="@id/navigation_paydone"
+            app:popUpTo="@id/navigation_pay"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -79,7 +81,8 @@
             app:argType="com.example.practice.bean.QRData" />
         <action
             android:id="@+id/action_navigation_paydone_to_navigation_pay"
-            app:popUpTo="@id/navigation_pay" />
+            app:popUpTo="@id/navigation_pay"
+            app:popUpToInclusive="true" />
     </fragment>
 
 
@@ -89,7 +92,9 @@
         android:label="チャージ">
         <action
             android:id="@+id/action_navigation_charge_to_navigation_chargedone"
-            app:destination="@id/navigation_chargedone" />
+            app:destination="@id/navigation_chargedone"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="false" />
     </fragment>
 
 
@@ -103,7 +108,9 @@
             app:argType="com.example.practice.bean.ChargeResponseBean" />
         <action
             android:id="@+id/action_navigation_chargedone_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
