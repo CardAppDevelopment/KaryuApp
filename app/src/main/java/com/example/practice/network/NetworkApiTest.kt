@@ -1,9 +1,6 @@
 package com.example.practice.network
 
-import com.example.practice.bean.CardLoginRequestBean
-import com.example.practice.bean.CurrentLimitRequestBean
-import com.example.practice.bean.CurrentLimitResponseBean
-import com.example.practice.bean.PayRequestBean
+import com.example.practice.bean.*
 import com.example.practice.module.MyData
 import com.example.practice.network.base.BaseNetworkApi
 
@@ -35,5 +32,9 @@ class NetworkApiTest(url:String) : BaseNetworkApi<INetworkService>(url){
     //情報取得API
     suspend fun requestGetCustomerInfo() = getResult {
         service.requestGetCustomerInfo()
+    }
+    //お支払うAPIをコール
+    suspend fun requestChargeInfo(request: ChargeRequestBean) = getResult {
+        service.requestChargeInfo(request)
     }
 }

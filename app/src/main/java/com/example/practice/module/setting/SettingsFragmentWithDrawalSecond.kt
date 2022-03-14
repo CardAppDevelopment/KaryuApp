@@ -15,13 +15,15 @@ import com.example.practice.databinding.FragmentPayBinding
 import com.example.practice.databinding.FragmentSettingsBinding
 import com.example.practice.module.pay.PayViewModel
 import androidx.navigation.fragment.findNavController
+import com.example.practice.databinding.FragmentSettingsWithdrawalBinding
+import com.example.practice.databinding.FragmentSettingsWithdrawalSecondBinding
 
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate){
+class SettingsFragmentWithDrawalSecond : BaseFragment<FragmentSettingsWithdrawalSecondBinding>(FragmentSettingsWithdrawalSecondBinding::inflate){
 
 //    val DeleteAccount : Button = viewBinding.DeleteAccount
 
     private lateinit var settingViewModel: SettingsViewModel
-//
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,15 +33,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         return super.onCreateView(inflater, container, savedInstanceState)
 
     }
-
+    //
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
         //   initView()
-
-        view.findViewById<Button>(R.id.DeleteAccount).setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_settings_to_settings_withdrawal)
+        view.findViewById<Button>(R.id.btn_drawal_ok).setOnClickListener{
+            findNavController().navigate(R.id.action_settings_withdrawal_second_to_settings_withdrawal_third)
         }
+
     }
     private fun initData() {
 
@@ -48,15 +50,5 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
 
     }
-
-
-
-    /*  private fun initView() {
-          val textView: TextView = viewBinding.textSettings
-          settingViewModel.text.observe(viewLifecycleOwner, Observer {
-              textView.text = it
-          })
-      }
-  */
 
 }

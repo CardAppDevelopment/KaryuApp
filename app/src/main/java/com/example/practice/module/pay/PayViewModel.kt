@@ -34,7 +34,7 @@ class PayViewModel : ViewModel() {
     }
 
     fun getPayInfo(request: PayRequestBean) {
-        val paymentData = NetworkApiTest("https://2e9b84ba-4658-4bed-9499-cd89f96964a4.mock.pstmn.io")
+        val paymentData = NetworkApiTest("https://fxvnv345tf.execute-api.ap-northeast-1.amazonaws.com/")
         loadingLiveData.postValue(true)
         viewModelScope.launch {
             paymentInfo = paymentData.requestPaymentInfo(request)

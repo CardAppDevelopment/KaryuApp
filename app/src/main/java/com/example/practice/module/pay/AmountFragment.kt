@@ -54,12 +54,11 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
 
 
         binding.btnPay.setOnClickListener{
-            val a=payViewModel.paymentInfo
             try{
                 payViewModel.getPayInfo(
                     PayRequestBean(
                         qrdata.date,
-                        "",
+                        "hash",
                         MyData().getID(),
                         qrdata.id,
                         (binding.editPrice.text).toString().toInt(),

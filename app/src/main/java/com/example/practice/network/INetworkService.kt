@@ -5,10 +5,7 @@ package com.example.practice.network
 import com.example.practice.bean.*
 import com.example.practice.module.MyData
 import com.example.practice.network.base.BaseResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface INetworkService {
 
@@ -18,8 +15,8 @@ interface INetworkService {
     @GET("dev/history")
     suspend fun requestHistoryInfo(@Query("start") startDate: String,@Query("end") endDate: String): BaseResponse<HistoryBean>
 
-    @GET("dev/left_money")
-    suspend fun requestLeftMoney(@Query("id") id: String): BaseResponse<LeftMoneyBean>
+    @GET("dev/left_money/{id}")
+    suspend fun requestLeftMoney(@Path("id") id: String): BaseResponse<LeftMoneyBean>
 
     @GET("dev/notification_data")
     suspend fun requestNotificationInfo(): BaseResponse<NotificationBean>
@@ -38,5 +35,8 @@ interface INetworkService {
 
     @GET("dev/get_custmerInfo")
     suspend fun requestGetCustomerInfo(): BaseResponse<CustomerInfoResponse>
+
+    @POST("dev/pay")
+    suspend fun requestChargeInfo(@Body request:ChargeRequestBean): BaseResponse<ChargeResponseBean>
 
 }

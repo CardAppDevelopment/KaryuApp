@@ -2,10 +2,9 @@ package com.example.practice.bean
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 @Parcelize
-data class PayResponseBean(
+data class ChargeResponseBean(
     val date: String,
     val hash: String,
     val id_from: Int,

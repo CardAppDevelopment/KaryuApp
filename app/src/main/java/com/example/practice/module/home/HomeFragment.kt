@@ -16,6 +16,8 @@ import java.io.File
 import android.os.CountDownTimer
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 //import com.example.practice.module.home.charge.ChargeActivity
 import com.example.practice.R
 import com.example.practice.databinding.FragmentHomeBinding
@@ -25,52 +27,6 @@ import java.time.LocalTime
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),View.OnClickListener{
-
-//    private lateinit var homeViewModel: HomeViewModel
-//    private var _binding: FragmentHomeBinding? = null
-//    private lateinit var filePath:String //QRCodeキャッシュパス
-//    private val TOTAL_TIME = 300000L //5分カウントダウン
-//    private val ONECE_TIME = 1000L //1秒おきに
-//
-//    private val binding get() = _binding!!
-//    /**
-//     * ↓チャージ画面へ遷移
-//     */
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        super.onCreateView(inflater, container, savedInstanceState)
-//        homeViewModel =
-//            ViewModelProvider(this)[HomeViewModel::class.java]
-//
-//        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-//        val root: View = binding.root
-//
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-//        //チャージ画面へ移動
-//        binding.moveCharge.setOnClickListener {
-////            Navigation.findNavController(root).navigate(R.id.navigation_charge)
-//            /*activity?.supportFragmentManager?.beginTransaction()
-//                ?.replace(R.id.nav_host_fragment_activity_main, ChargeFragment(), null)
-//                ?.addToBackStack(null)
-//                ?.commit()*/
-//
-//            findNavController().navigate(R.id.navigation_charge)
-//        }
-//
-//        return root
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var filePath:String //QRCodeキャッシュパス
@@ -106,12 +62,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             viewBinding.moneyLeft.text=it.getOrNull()?.leftData?.money
         })
         imageView.setOnClickListener(this)
+
+
+
         countDownTimer.start()
-//        //チャージ画面へ遷移
-//        chargeRl.setOnClickListener {
-//            var intent = Intent(this.getActivity(), ChargeActivity().javaClass)
-//            startActivity(intent)
-//        }
+        //チャージ画面へ遷移
+        chargeRl.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_charge)
+        }
         titleView.text=resources.getString(R.string.title_pay)
         titleView.setTextColor(resources.getColor(R.color.white,null))
 
