@@ -25,7 +25,7 @@ class ChargeDoneFragment : BaseFragment<FragmentChargedoneBinding>(FragmentCharg
 
         view.findViewById<TextView>(R.id.txtName).text="チャージ完了"
         view.findViewById<TextView>(R.id.txtMsg).text=""//args.response.msg
-        view.findViewById<TextView>(R.id.txtPrice).text= (args.response.money).toString()
+        view.findViewById<TextView>(R.id.txtPrice).text= (args.response.money).toString()+"円"
     }
     private fun initData() {
         homeViewModel =

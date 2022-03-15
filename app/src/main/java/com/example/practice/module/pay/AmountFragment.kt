@@ -53,7 +53,7 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
         binding.txtName.text=qrdata.name
 
 
-        binding.btnPay.setOnClickListener{
+        binding.chargeBtn.setOnClickListener{
             try{
                 payViewModel.getPayInfo(
                     PayRequestBean(
@@ -98,10 +98,6 @@ class AmountFragment: BaseFragment<FragmentAmountBinding>(FragmentAmountBinding:
             jsonObject.getString("date"),
             jsonObject.getString("time"),
             jsonObject.getString("hash"))
-    }
-
-    fun test(){
-
     }
 
 }

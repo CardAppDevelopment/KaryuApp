@@ -91,7 +91,7 @@ class ChargeFragment : BaseFragment<FragmentChargeBinding>(FragmentChargeBinding
                         "0",
                         //送信先
                         "1234567890",
-                        (binding.chargeInput.text).toString().toInt(),
+                        (binding.editPrice.text).toString().toInt(),
                         "13:00"
                     )
                 )

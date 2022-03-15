@@ -25,7 +25,7 @@ class PayDoneFragment : BaseFragment<FragmentPaydoneBinding>(FragmentPaydoneBind
 
         view.findViewById<TextView>(R.id.txtName).text=args.qrdata.name
         view.findViewById<TextView>(R.id.txtMsg).text=args.response.msg
-        view.findViewById<TextView>(R.id.txtPrice).text= (args.response.money).toString()
+        view.findViewById<TextView>(R.id.txtPrice).text= (args.response.money).toString()+"円"
     }
     private fun initData() {
         payViewModel =

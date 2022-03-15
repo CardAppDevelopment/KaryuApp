@@ -18,7 +18,7 @@ class ScanQRActivity : AppCompatActivity() {
         //スキャンボタンのクリックイベントを設定
             val qrScan = IntentIntegrator(this)
             qrScan.setOrientationLocked(true)
-            qrScan.setPrompt("QRコードを認識してください。")
+            qrScan.setPrompt("　")
             qrScan.initiateScan()
     }
 
@@ -37,7 +37,7 @@ class ScanQRActivity : AppCompatActivity() {
                 val intent=Intent()
                 intent.putExtra("qrdata",result.contents)
                 setResult(Activity.RESULT_OK,intent)
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
                 finish()
             }
         } else {

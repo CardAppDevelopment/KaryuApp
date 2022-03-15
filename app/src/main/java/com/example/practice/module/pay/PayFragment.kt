@@ -51,7 +51,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
         super.onAttach(context)
         _qrlauncher.launch(Intent(this.activity,ScanQRActivity().javaClass))
 
-        val data="{\n" +
+        /*val data="{\n" +
                 "  \"id\":2345678901,\n" +
                 "  \"name\":\"View商店\",\n" +
                 "  \"date\":\"2022/01/01\",\n" +
@@ -65,7 +65,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(FragmentPayBinding::inflate
         }
         catch(e:Exception){
             findNavController().navigate(R.id.navigation_amount)
-        }
+        }*/
 
     }
 
