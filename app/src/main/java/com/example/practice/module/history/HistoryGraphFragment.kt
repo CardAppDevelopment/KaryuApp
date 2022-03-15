@@ -72,7 +72,7 @@ class HistoryGraphFragment : BaseFragment<FragmentHistoryGraphBinding>(FragmentH
                 circleData.add(CircleDataBean(item.value*100/arrayList.size, item.key, requireContext().getColor(R.color.light_blue)))
             }
             if(count == 3){
-                circleData.add(CircleDataBean(item.value*100/arrayList.size, item.key, requireContext().getColor(R.color.gray)))
+                circleData.add(CircleDataBean(item.value*100/arrayList.size, item.key, requireContext().getColor(R.color.light_green)))
             }
             count++
         }

@@ -84,8 +84,10 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
             var data5 = Data("○○〇","30000円","2021/01/02")
             var data6 = Data("○○〇","30000円","2021/01/02")
             var data7 = Data("ルミネ新宿","30000円","2021/01/02")
-            var history= HistoryBean(listOf(data,data1,data2,data3,data4,data5,data6,data7))
+            //var history= HistoryBean(listOf(data,data1,data2,data3,data4,data5,data6,data7))
+            val history=historyViewModel.historyListLiveData.value!!.getOrNull()
             val action=HistoryFragmentDirections.actionNavigationHistoryToNavigationHistoryGraph(history)
+
             findNavController().navigate(action)
         }
         //startDateを選択
